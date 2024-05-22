@@ -1,5 +1,5 @@
 import express from 'express';
-import path from 'path';
+import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 
 import apiRouter from './routes/api-routes.js';
@@ -15,13 +15,14 @@ app.use(express.json());
 
 // Setup cookie-parser
 app.use(cookieParser());
+app.use(morgan('dev'));
 
 // Make the "public" folder available statically
 app.use(express.static('public'));
 
 // Setup our routes
-app.use(apiRouter);
-app.use(appRouter);
+app.use('/', appRouter);
+app.use('/api', apiRouter);
 
 // Start the server running. Once the server is running, the given function will be called, which will
 // log a simple message to the server console. Any console.log() statements in your node.js code
