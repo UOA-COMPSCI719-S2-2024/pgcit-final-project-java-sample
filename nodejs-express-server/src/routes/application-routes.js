@@ -5,10 +5,14 @@ import {
 } from '../modules/pokemon-dao.js';
 
 const router = Router();
-/**
- * Whenever we make a GET request to /, return json of the pokemon
- */
-router.get('/', async function (req, res) {
+
+router.get('/', (_, res) =>
+  res.send(
+    'Welcome to the API Server please now read through the readme & server code 🙂',
+  ),
+);
+
+router.get('/random', async function (req, res) {
   const pokemon = await retrieveRandomPokemon();
   res.json(pokemon);
 });
