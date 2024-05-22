@@ -23,10 +23,11 @@ The Java Client handles JSON using a java library called `import com.fasterxml.j
 
 Please note there are multiple ways of installing libraries in Java, however if you copy the entire `java-swing-client` folder into your project repository, it should function as expected with opening in IntelliJ.
 
+![java-swing-client](docs/java-swing-client.png)
 
 ## Express NodeJS Backend
 
-You are expected to read the router code to understand the right paths that are being called by the Java Client. However these are some paths you may want to manually try in the browser.
+You are expected to read the router code to understand the right paths that are being called by the Java Client. However, some paths you may want to manually try in the browser.
 
 - `http://localhost:3000`
 - `http://localhost:3000/random`
