@@ -1,0 +1,32 @@
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+
+import apiRouter from './routes/api-routes.js';
+import appRouter from './routes/application-routes.js';
+
+// Setup Express
+const app = express();
+const port = 3000;
+
+// Setup body-parser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+// Setup cookie-parser
+app.use(cookieParser());
+
+// Make the "public" folder available statically
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Setup our routes
+app.use(apiRouter);
+app.use(appRouter);
+
+// Start the server running. Once the server is running, the given function will be called, which will
+// log a simple message to the server console. Any console.log() statements in your node.js code
+// can be seen in the terminal window used to run the server.
+app.listen(port, function () {
+  console.log(`App listening on port ${port}!`);
+});
