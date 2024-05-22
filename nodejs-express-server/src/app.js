@@ -17,8 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Make the "public" folder available statically
-
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 // Setup our routes
 app.use(apiRouter);

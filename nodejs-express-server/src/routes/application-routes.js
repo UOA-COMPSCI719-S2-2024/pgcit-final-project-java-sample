@@ -1,20 +1,29 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+import {
+  retrieveRandomPokemon,
+  retrieveRandomPokemonWithType,
+} from '../modules/pokemon-dao.js';
 
-const {
-  incrementCallCountCookie,
-} = require('../middleware/counter-cookie-middleware');
-const { retrieveRandomPokemon } = require('../modules/pokemon-dao');
-
+const router = Router();
 /**
- * Whenever we make a GET request to /, render the "home" view with a random pokemon.
- * Using the counter-cookie-middleware, we will also increment the callCount cookie by 1.
+ * Whenever we make a GET request to /, return json of the pokemon
  */
-router.get('/', incrementCallCountCookie, async function (req, res) {
+router.get('/', async function (req, res) {
   const pokemon = await retrieveRandomPokemon();
-  res.locals.pokemon = pokemon;
-
-  res.render('home');
+  res.json(pokemon);
 });
 
-module.exports = router;
+router.get('/search', async function (req, res) {
+  const searchType = req.query.searchType;
+
+  if (!searchType) {
+    return res.status(400).json({
+      message: 'please provide a searchType query parameter',
+    });
+  }
+
+  const pokemon = await retrieveRandomPokemonWithType(searchType);
+  res.json(pokemon);
+});
+
+export default router;

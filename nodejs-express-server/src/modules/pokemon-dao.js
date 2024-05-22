@@ -1,4 +1,4 @@
-const dbPromise = require('./database.js');
+import getDatabase from './database.js';
 
 /**
  * Gets the pokemon with the given id from the database.
@@ -7,8 +7,8 @@ const dbPromise = require('./database.js');
  * @param {number} id the id of the pokemon to get.
  * @returns the pokemon with the given id, or undefined if the pokemon doesn't exist.
  */
-async function retrievePokemonById(id) {
-  const db = await dbPromise;
+export async function retrievePokemonById(id) {
+  const db = await getDatabase();
 
   const pokemon = await db.get('SELECT * FROM pokemon WHERE id = ?', id);
 
@@ -20,27 +20,21 @@ async function retrievePokemonById(id) {
  *
  * @returns a random pokemon
  */
-async function retrieveRandomPokemon() {
+export async function retrieveRandomPokemon() {
   const random = Math.round(Math.random() * 150 + 1);
   return await retrievePokemonById(random);
 }
 
-async function retrieveRandomPokemonWithType(type) {
-  const db = await dbPromise;
+export async function retrieveRandomPokemonWithType(searchType) {
+  const db = await getDatabase();
 
-  const wildcard = `%${type}%`;
+  const wildcard = `%${searchType}%`;
 
-  const pokemon = await db.all(SQL`
-        select * from pokemon
-        where types LIKE ${wildcard}`);
+  const pokemon = await db.all(
+    'SELECT * FROM pokemon WHERE types LIKE ?',
+    wildcard,
+  );
 
   const i = Math.floor(Math.random() * pokemon.length);
   return pokemon[i];
 }
-
-// Export functions.
-module.exports = {
-  retrievePokemonById,
-  retrieveRandomPokemon,
-  retrieveRandomPokemonWithType,
-};
