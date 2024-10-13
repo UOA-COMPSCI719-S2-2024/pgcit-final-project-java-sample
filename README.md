@@ -31,7 +31,7 @@ You are expected to read the router code to understand the right paths that are 
 
 - `GET http://localhost:3000/api/random`: Returns a random Pokemon as JSON. Also interacts with a cookie called `callCount` to keep track of how many Pokemon a particular client has viewed.
 
-- `POST http://localhost:3000/api/random`: Accepts a JSON object with a `type` propery in the request body. For example:
+- `POST http://localhost:3000/api/random`: Accepts a JSON object with a `type` property in the request body. For example:
 
   ```json
   {
