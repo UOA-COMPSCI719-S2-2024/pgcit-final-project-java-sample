@@ -1,10 +1,10 @@
 # Pokemon Java + NodeJS client
 
-This sample repository demonstrates how a Java client can connect to a NodeJS backend
+This sample repository demonstrates how a Java client can connect to a NodeJS backend.
 
 This NodeJS backend can serve multiple different types of clients, including web browsers.
 
-**NOTE THE JAVA SWING CLIENT IS NOT A BROWSER** therefore we do not need to consider CORS, as the enforcement of CORS is dependent on the Client (browser).
+**NOTE THE JAVA SWING CLIENT IS NOT A BROWSER** therefore we do not need to consider CORS, as the enforcement of CORS is dependent on the Client (browser). You will still need to consider CORS in your backend in the final project of course, as you will also be communicating with it from your frontend Svelte apps!
 
 The only required knowledge to connect to a server (not complete the application) is excellent understanding of what port the backend server is running on, and ability to type correct api routes and debug them in Java code.
 

@@ -1,9 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-
 import apiRouter from './routes/api-routes.js';
-import appRouter from './routes/application-routes.js';
 
 // Setup Express
 const app = express();
@@ -21,7 +19,6 @@ app.use(morgan('dev'));
 app.use(express.static('public'));
 
 // Setup our routes
-app.use('/', appRouter);
 app.use('/api', apiRouter);
 
 // Start the server running. Once the server is running, the given function will be called, which will
