@@ -27,10 +27,18 @@ Please note there are multiple ways of installing libraries in Java, however if 
 
 ## Express NodeJS Backend
 
-You are expected to read the router code to understand the right paths that are being called by the Java Client. However, some paths you may want to manually try in the browser.
+You are expected to read the router code to understand the right paths that are being called by the Java Client. However, some paths you may want to manually try in Postman:
 
-- `http://localhost:3000`
-- `http://localhost:3000/random`
-- `http://localhost:3000/search?searchType=water`
+- `GET http://localhost:3000/api/random`: Returns a random Pokemon as JSON. Also interacts with a cookie called `callCount` to keep track of how many Pokemon a particular client has viewed.
 
-![query-route-example-search-type](docs/query-route-example-search-type.png)
+- `POST http://localhost:3000/api/random`: Accepts a JSON object with a `type` propery in the request body. For example:
+
+  ```json
+  {
+    "type": "Psychic"
+  }
+  ```
+
+  Returns a random Pokemon of that type. Also interacts with the same `callCount` cookie mentioned above.
+
+  **Important:** Usually it would be _much_ better practice to implement this feature using a `GET` request with a query parameter (e.g. `...?type=Psychic` in the URL). The _only_ reason I implemented it as a `POST` request with JSON in the request body is so I could provide an easy example of how to send JSON data to the backend from your Java application!
