@@ -21,7 +21,7 @@ The Java Client contains all the necessary code examples to make requests, handl
 
 The Java Client handles JSON using a java library called `import com.fasterxml.jackson`. To parse JSON responses from the NodeJS express server in your own Java project, you can consider doing the same.
 
-Please note there are multiple ways of installing libraries in Java, however if you copy the entire `java-swing-client` folder into your project repository, it should function as expected with opening in IntelliJ.
+The `java-client` folder in your _project_ repositories has a barebones Java application with the correct libraries pre-installed. You may also want to copy over the `JSONUtils.java` file from this project - you're welcome to use it as you see fit.
 
 ![java-swing-client](docs/java-swing-client.png)
 
